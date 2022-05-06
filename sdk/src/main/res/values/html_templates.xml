@@ -1,0 +1,60 @@
+
+<resources>
+    <string name="swedbankpaysdk_javascript_interface_name">swedbankpaysdk</string>
+
+    <string name="swedbankpaysdk_view_consumer_identification_template">
+&lt;!DOCTYPE html>
+&lt;html>
+    &lt;head>
+        &lt;title>&lt;/title>
+    &lt;/head>
+    &lt;body>
+        &lt;div id=\"checkin\" />
+        &lt;script src=\"%1$s\">&lt;/script>
+        &lt;script language=\"javascript\">
+            var parameters = {
+                container: \"checkin\",
+                onConsumerIdentified: function(consumerIdentifiedEvent) {
+                    swedbankpaysdk.onConsumerProfileRefAvailable(consumerIdentifiedEvent.consumerProfileRef);
+                },
+                onError: function(error) {
+                    swedbankpaysdk.onIdentifyError(JSON.stringify(error));
+                }
+            };
+            var style = %2$s;
+            if (style) {
+                parameters.style = style;
+            }
+            payex.hostedView.consumer(parameters).open();
+        &lt;/script>
+    &lt;/body>
+&lt;/html>
+    </string>
+
+    <string name="swedbankpaysdk_view_paymentorder_template">
+&lt;!DOCTYPE html>
+&lt;html>
+    &lt;head>
+        &lt;title>&lt;/title>
+    &lt;/head>
+    &lt;body>
+        &lt;div id=\"checkout\" />
+        &lt;script src=\"%1$s\">&lt;/script>
+        &lt;script language="javascript">
+            var parameters = {
+                container: \"checkout\",
+                onError: function(error) {
+                    swedbankpaysdk.onPaymentError(JSON.stringify(error));
+                }
+            };
+            var style = %2$s;
+            if (style) {
+                parameters.style = style;
+            }
+            payex.hostedView.paymentMenu(parameters).open();
+        &lt;/script>
+    &lt;/body>
+&lt;/html>
+    </string>
+
+</resources>

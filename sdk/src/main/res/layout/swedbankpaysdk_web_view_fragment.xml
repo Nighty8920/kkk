@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/swedbankpaysdk_web_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swedbankpaysdk_web_view_overlay_holder"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        android:paddingTop="@dimen/swedbankpaysdk_extra_webview_top_padding"
+        android:clipToPadding="false"
+        android:background="#22000000"
+        android:clickable="true"
+        android:focusable="true">
+        <LinearLayout
+            android:id="@+id/swedbankpaysdk_web_view_overlay"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            app:behavior_peekHeight="0dp"
+            app:behavior_hideable="true"
+            app:behavior_skipCollapsed="true"
+            >
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/swedbankpaysdk_extra_web_view_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:navigationIcon="@drawable/swedbankpaysdk_close"
+                android:minHeight="@dimen/swedbankpaysdk_toolbar_height"
+                android:elevation="@dimen/swedbankpaysdk_toolbar_elevation"
+                android:background="@android:color/white"
+                />
+
+            <FrameLayout
+                android:id="@+id/swedbankpaysdk_extra_web_view_container"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

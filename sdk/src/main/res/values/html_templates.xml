@@ -1,0 +1,62 @@
+
+<resources>
+    <string name="swedbankpaysdk_javascript_interface_name">swedbankpaysdk</string>
+
+    <string name="swedbankpaysdk_view_consumer_identification_template">
+&lt;!DOCTYPE html>
+&lt;html>
+    &lt;head>
+        &lt;title>&lt;/title>
+    &lt;/head>
+    &lt;body>
+        &lt;div id=\"checkin\" />
+        &lt;script src=\"%s\">&lt;/script>
+        &lt;script language=\"javascript\">
+            payex.hostedView.consumer({
+                container: \"checkin\",
+                onConsumerIdentified: function(consumerIdentifiedEvent) {
+                    swedbankpaysdk.onConsumerProfileRefAvailable(consumerIdentifiedEvent.consumerProfileRef);
+                },
+                onError: function(error) {
+                    swedbankpaysdk.onIdentifyError(JSON.stringify(error));
+                }
+            }).open();
+        &lt;/script>
+    &lt;/body>
+&lt;/html>
+    </string>
+
+    <string name="swedbankpaysdk_view_paymentorder_template">
+&lt;!DOCTYPE html>
+&lt;html>
+    &lt;head>
+        &lt;title>&lt;/title>
+    &lt;/head>
+    &lt;body>
+        &lt;div id=\"checkout\" />
+        &lt;script src=\"%s\">&lt;/script>
+        &lt;script language="javascript">
+            payex.hostedView.paymentMenu({
+                container: \"checkout\",
+                onPaymentCompleted: function(event) {
+                    swedbankpaysdk.onPaymentCompleted();
+                },
+                onPaymentCanceled: function(event) {
+                    swedbankpaysdk.onPaymentCanceled();
+                },
+                onPaymentFailed: function(event) {
+                    swedbankpaysdk.onPaymentFailed();
+                },
+                onPaymentToS: function(event) {
+                    swedbankpaysdk.onPaymentToS(JSON.stringify(event));
+                },
+                onError: function(error) {
+                    swedbankpaysdk.onPaymentError(JSON.stringify(error));
+                }
+            }).open();
+        &lt;/script>
+    &lt;/body>
+&lt;/html>
+    </string>
+
+</resources>
